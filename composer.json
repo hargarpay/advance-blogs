@@ -41,6 +41,7 @@
             "php artisan optimize"
         ],
         "post-update-cmd": [
+            "php artisan fix:pusher",
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
         ]

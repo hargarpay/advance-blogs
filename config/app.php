@@ -178,6 +178,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         //App\Providers\ObserverServiceProvider::class,
 
+        /*
+        *Third Party Apllication Service Providers...
+        */
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+
     ],
 
     /*

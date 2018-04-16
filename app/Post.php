@@ -11,7 +11,7 @@ class Post extends Model
     
     protected $table = 'posts';
 
-    protected $fillable = ['name', 'description', 'user_id'];
+    protected $fillable = ['title', 'description', 'user_id'];
 
     /**
     * The attributes that should be mutated to dates
@@ -28,6 +28,6 @@ class Post extends Model
     }
 
     public function getCreatedAtFormatAttribute($value){
-    	return \Carbon\Carbon::parse($this->created_at)->formart('jF M, Y');
+    	return \Carbon\Carbon::parse($this->created_at)->format('jS M, Y');
     }
 }

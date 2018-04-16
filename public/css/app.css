@@ -8635,6 +8635,28 @@ table#user-table td {
   }
 }
 
+table#post-table td {
+  word-break: break-word;
+}
+
+@media only screen and (max-width: 768px) {
+  table#post-table td:nth-of-type(2):before {
+    content: "Title";
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  table#post-table td:nth-of-type(3):before {
+    content: "Description";
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  table#post-table td:nth-of-type(4):before {
+    content: "Date Created";
+  }
+}
+
 .panel-heading.padding {
   padding: 20px;
 }

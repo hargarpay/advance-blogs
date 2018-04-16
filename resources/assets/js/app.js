@@ -31,4 +31,15 @@ $(document).ready(function () {
 		$('button.close').on('click', () => $('.notification-wrapper').slideUp());
 	}
 
+  $("td.actions-button a.btn:not('.btn-info')").on('click', function(e){
+      e.preventDefault();
+      $this = $(this);
+      if($this.hasClass('btn-danger')){
+          $('form#delete-method').attr('action', $this.data('href')).submit();
+      }else if($this.hasClass('btn-default') || $this.hasClass('btn-warning'))
+      {
+          $('form#put-method').attr('action', $this.data('href')).submit();
+      }
+  })
+
 });

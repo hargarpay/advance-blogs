@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;
 
-use Validate;
+use Validator;
 
 class PostController extends Controller
 {
@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function view(){
     	$title = "View Posts";
-    	$posts = Post::all();
+    	$posts = Post::paginate(25);
     	return view('posts.view', compact('title', 'posts'));
     }
 
@@ -29,11 +29,11 @@ class PostController extends Controller
 
     public function create(){
     	$title = "Create Post";
-    	return view('posts.view', compact('title'));
+    	return view('posts.create', compact('title'));
     }
 
     public function store(Request $request){
-    	$validate = Validator::make($request->all(), ['title' => 'required', 'description' => 'required']);
+    	$validate = Validator::make($request->all(), ['title' => 'required|min:5', 'description' => 'required|min:20']);
     	if($validate->passes()){
     		Post::create([
     				'title' => $request->input('title'),
@@ -42,7 +42,7 @@ class PostController extends Controller
     			]);
 
     		flash('Successfully, created the post')->success();
-    		return redirect()->route('view.post');
+    		return redirect()->route('view.posts');
     	}
     	flash('Something is wrong')->error();
     	return redirect()->back()
@@ -57,7 +57,7 @@ class PostController extends Controller
 
 
     public function update(Request $request, Post $post){
-    	$validate = Validator::make($request->all(), ['title' => 'required', 'description' => 'required']);
+    	$validate = Validator::make($request->all(), ['title' => 'required|min:5', 'description' => 'required|min:20']);
 
     	if($validate->passes()){
     		$post->title = $request->input('title');
@@ -76,19 +76,33 @@ class PostController extends Controller
     public function trash(Post $post){
     	$post->delete();
     	flash('Successfully, trashed post')->success();
-    	return redirecr()->back();
+    	return redirect()->back();
     }
 
     public function untrash(Post $post){
     	$post->restore();
     	flash('Successfully, restore post')->success();
-    	return redirecr()->back();
+    	return redirect()->back();
     }
 
     public function permanentDelete(Post $post){
     	$post->forceDelete();
     	flash('Successfully, restore post')->success();
-    	return redirecr()->back();
+    	return redirect()->back();
+    }
+
+    public function publish(Post $post){
+        $post->published = 1;
+        $post->save();
+        flash('Successfully, published post')->success();
+        return redirect()->back();
+    }
+
+    public function draft(Post $post){
+        $post->published = 0;
+        $post->save();
+        flash('Successfully, drafted post')->success();
+        return redirect()->back();
     }
 
 }

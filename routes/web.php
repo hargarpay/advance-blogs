@@ -45,8 +45,10 @@ Route::group(['prefix' => 'post'], function(){
 	Route::post('create', 'PostController@store');
 	Route::get('{post}/update', ['as' => 'update.post', 'uses' => 'PostController@edit']);
 	Route::post('{post}/update', 'PostController@update');
-	Route::put('{post}/trash', ['as' => 'trash.post', 'uses' => 'PostController@trash']);
 	Route::put('{post}/restore', ['as' => 'restore.post', 'uses' => 'PostController@restore']);
+	Route::put('{post}/publish', ['as' => 'publish.post', 'uses' => 'PostController@publish']);
+	Route::put('{post}/draft', ['as' => 'draft.post', 'uses' => 'PostController@draft']);
+	Route::delete('{post}/trash', ['as' => 'trash.post', 'uses' => 'PostController@trash']);
 	Route::delete('{post}/delete', ['as' => 'delete.post', 'uses' => 'PostController@permanentDelete']);
 });
 

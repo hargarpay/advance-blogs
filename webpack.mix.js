@@ -11,8 +11,14 @@ let mix = require('laravel-mix');
  |
  */
 
- mix.copy('node_modules/vue/dist/vue.min.js', 'resources/assets/js/lib/vue.js');
- 	.copy('node_modules/axios/dist/axios.min.js', 'resources/assets/js/lib/axios.js');
+ // mix.copy('node_modules/vue/dist/vue.min.js', 'resources/assets/js/lib/vue.js');
+ // 	.copy('node_modules/axios/dist/axios.min.js', 'resources/assets/js/lib/axios.js');
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+	.sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.scripts([
+    'public/js/app.js'
+], 'public/js/all.js');
+
+mix.version(['public/css/app.css', 'public/js/all.js']);

@@ -5,10 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -28,6 +30,11 @@ class User extends Authenticatable implements JWTSubject
         'password', 'remember_token',
     ];
 
+    /**
+    * The attributes that should be mutated to dates
+    *
+    **/
+        protected $dates = ['deleted_at'];
      /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -54,5 +61,36 @@ class User extends Authenticatable implements JWTSubject
 
     public function comments(){
         return $this->hasMany('App\Comment');
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Role', 'users_roles', 'user_id', 'role_id')->withTimestamps();;
+    }
+
+    public function hasAccess($permissions)
+    {
+        foreach ($permissions as $permission) {
+            if($this->hasPerssions($permission)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function hasPerssions($permission){
+        return $this->roles()->hasAccess($permission);
+    }
+
+    public function inRole($roles){
+        foreach ($roles as $role) {
+            if($this->roles()->slug === $role){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function getCreatedAtFormatAttribute($value){
+        return \Carbon\Carbon::parse($this->created_at)->formart('jF M, Y');
     }
 }

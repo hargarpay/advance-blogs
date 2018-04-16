@@ -19,7 +19,7 @@ class PostTableSeeder extends Seeder
 
         foreach (range(1, 20) as $index) {
         	Post::create([
-        			'name' => $faker->title,
+        			'title' => $faker->words(5, true),
         			'description' => $faker->text(250),
         			'user_id' => $faker->randomElement($user_ids)
         		]);

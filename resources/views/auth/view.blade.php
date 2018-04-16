@@ -44,7 +44,7 @@
                     </table>
                 </div>
                 <div class="panel-footer" >
-                    @include('pagination.default', ['paginator' => $posts])
+                    @include('pagination.default', ['paginator' => $users])
                 </div>
             </div>
         </div>

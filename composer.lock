@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "content-hash": "3d991110f53877d9210d2e9ee2359bbe",
+
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",

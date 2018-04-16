@@ -17,7 +17,7 @@ class Post extends Model
     * The attributes that should be mutated to dates
     *
     **/
-        protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     public function comments(){
     	return $this->hasMany('App\Comment');

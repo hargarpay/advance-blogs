@@ -15,6 +15,7 @@ class UserTableSeeder extends Seeder
     public function run()
     {
     	$faker = Faker::create();
+
         $role_ids = Role::pluck('id')->all();
     	foreach (range(1, 10) as $index) {
 	       $user =  User::create([

@@ -36,6 +36,5 @@ $(document).ready(function () {
       {
           $('form#put-method').attr('action', $this.data('href')).submit();
       }
-  })
-
+  });
 });

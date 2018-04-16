@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+
 use App\Post;
 use App\Comment;
 use Illuminate\Broadcasting\Channel;
@@ -48,6 +49,5 @@ class WebsocketEvent implements ShouldBroadcastNow
                 ]
         ];
     }
-
 
 }

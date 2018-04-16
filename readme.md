@@ -6,10 +6,11 @@
 
 ## Added Feature
 - JWT Authentication
-
-## Upcoming Features
 - Websocket
 - Role and permission
+
+## Upcoming Features
+More Features are coming
 
 ## Technology
 - Laravel 5.4

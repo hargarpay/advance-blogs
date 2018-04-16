@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-     <meta http-equiv="pragma" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -137,7 +136,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <h3 class="text-center ">&copy; {{date('Y')}} Designed and Developed By Odewale Ifeoluwa</h3>
+                        <h3 class="text-center ">&copy; {{date('Y')}} Designed and Developed By AppDev (hargarpay)</h3>
                     </div>
                 </div>
             </div>

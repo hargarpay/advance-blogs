@@ -10,7 +10,7 @@ let mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
-
+ 
  // mix.copy('node_modules/vue/dist/vue.min.js', 'resources/assets/js/lib/vue.js');
  // 	.copy('node_modules/axios/dist/axios.min.js', 'resources/assets/js/lib/axios.js');
 

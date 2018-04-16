@@ -7,6 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading padding"><h3>Create User</h3></div>
 
+
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -16,6 +17,7 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" >
+
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">

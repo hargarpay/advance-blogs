@@ -43,6 +43,9 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="panel-footer" >
+                    @include('pagination.default', ['paginator' => $posts])
+                </div>
             </div>
         </div>
     </div>

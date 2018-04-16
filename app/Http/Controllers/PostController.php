@@ -16,7 +16,7 @@ class PostController extends Controller
 
     public function view(){
     	$title = "View Posts";
-    	$posts = Post::paginate(25);
+    	$posts = Post::paginate(10);
     	return view('posts.view', compact('title', 'posts'));
     }
 

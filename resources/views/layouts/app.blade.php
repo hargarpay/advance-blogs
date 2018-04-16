@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta http-equiv="pragma" content="no-cache" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -68,7 +69,7 @@
     </div>
 @endif
     <div id="content" class="screen-view-height" @if(!auth()->check()) style="width: 100%;" @endif>
-        <div id="app" class="main-content-height">
+        <div  class="main-content-height">
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
                     <div class="navbar-header">
@@ -148,5 +149,6 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/all.js') }}"></script>
+    @yield('script-content')
 </body>
 </html>

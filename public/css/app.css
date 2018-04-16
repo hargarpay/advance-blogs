@@ -8665,3 +8665,35 @@ table#post-table td {
   display: inline;
 }
 
+#post h2 {
+  font-size: 32px;
+}
+
+#post ul.comments {
+  margin: 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#post ul.comments li {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+#post ul.comments li a {
+  display: block;
+  color: #797979;
+  font-size: 12px;
+}
+
+#post .padding-bottom {
+  padding-bottom: 30px;
+  border-bottom: 1px solid grey;
+}
+
+#post .padding-bottom.non-border-bottom {
+  border-bottom: 0;
+}
+

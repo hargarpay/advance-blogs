@@ -15,9 +15,20 @@ Route::pattern('user', '[0-9]+');
 Route::pattern('post', '[0-9]+');
 Route::pattern('comment', '[0-9]+');
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', ['as' => 'posts','uses' => 'HomeController@index']);
+Route::get('/home', ['as' => 'posts','uses' => 'HomeController@index']);
+Route::get('/post/{post}/comments', 'CommentController@getComments');
+
+Route::get('/post/{post}/{slug}', ['as' => 'view.single.post','uses' => 'HomeController@blogPost']);
+
+Route::group(['prefix' => 'comment'], function(){
+	Route::get('/view', ['as' => 'get.comments', 'uses' => 'CommentController@getComments']);
+	Route::post('{post}/create', ['as' => 'create.comment', 'uses' => 'CommentController@store']);
+	// Route::get('{post}/update', ['as' => 'update.post', 'uses' => 'PostController@edit']);
+	// Route::post('{post}/update', 'PostController@update');
+	// Route::delete('{post}/delete', ['as' => 'delete.post', 'uses' => 'PostController@permanentDelete']);
 });
+
 Route::group(['prefix' => 'auth'], function(){
 	Route::get('/login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
 	Route::post('/login', 'Auth\LoginController@login');
@@ -54,14 +65,8 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::delete('{post}/delete', ['as' => 'delete.post', 'uses' => 'PostController@permanentDelete']);
 	});
 
-	Route::group(['prefix' => 'comments'], function(){
-		Route::get('view', ['as' => 'get.comments', 'uses' => 'CommentController@getComments']);
-		Route::get('{post}/create', ['as' => 'create.comment', 'uses' => 'CommentController@create']);
-		// Route::get('{post}/update', ['as' => 'update.post', 'uses' => 'PostController@edit']);
-		// Route::post('{post}/update', 'PostController@update');
-		// Route::delete('{post}/delete', ['as' => 'delete.post', 'uses' => 'PostController@permanentDelete']);
-	});
+	
 	
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

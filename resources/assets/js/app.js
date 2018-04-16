@@ -9,10 +9,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-const app = new Vue({
-	el: "#app"
-})
-
 $(document).ready(function () {
 
     $('#sidebarCollapse').on('click', () => {

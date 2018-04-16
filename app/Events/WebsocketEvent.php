@@ -2,6 +2,8 @@
 
 namespace App\Events;
 
+use App\Post;
+use App\Comment;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -9,8 +11,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-class WebsocketEvent
+class WebsocketEvent implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -19,9 +22,11 @@ class WebsocketEvent
      *
      * @return void
      */
-    public function __construct()
+    public $comment;
+
+    public function __construct(Comment $comment)
     {
-        //
+        $this->comment =  $comment;
     }
 
     /**
@@ -31,6 +36,18 @@ class WebsocketEvent
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('post.'.$this->comment->post->id);
     }
+
+    public function broadcastWith(){
+        return [
+            'comment' => $this->comment->comment,
+            'created_at_format' => $this->comment->created_at_format,
+            'user' => [
+                    'name' => $this->comment->user->name
+                ]
+        ];
+    }
+
+
 }

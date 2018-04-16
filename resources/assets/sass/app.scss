@@ -310,3 +310,32 @@ table#post-table{
 		display: inline;
 	}
 }
+
+#post{
+	h2{
+		font-size: 32px;
+	}
+	ul.comments{
+		margin:20px 0;
+		padding:0;
+		list-style: none;
+		li{
+			display: inline-block;
+			padding: 5px 10px;
+			border: 1px solid #c0c0c0;
+			border-radius: 2px;
+			a{
+			    display: block;
+			    color: #797979;
+			    font-size: 12px;
+			}
+		}
+	}
+	.padding-bottom{
+		padding-bottom: 30px;
+		border-bottom: 1px solid grey;
+	}
+	.padding-bottom.non-border-bottom{
+		border-bottom: 0;
+	}
+}

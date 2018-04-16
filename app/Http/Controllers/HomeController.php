@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+
     }
 
     /**
@@ -23,6 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $title = 'Homepage';
+        $posts = Post::paginate(10);
+        return view('home', compact('title', 'posts'));
+    }
+
+    public function blogPost(Post $post){
+        $title = 'View '.$post->title;
+        return view('post', compact('title', 'post'));
     }
 }

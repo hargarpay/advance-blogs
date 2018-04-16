@@ -78,6 +78,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+        if(auth()->user()->cannot('create-user')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $title = 'Create User';
 
         $roles = \App\Role::pluck('name', 'id')->all();
@@ -87,6 +91,10 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        if(auth()->user()->cannot('create-user')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $validate = $this->validator($request->all());
 
         if($validate->passes()){
@@ -111,12 +119,20 @@ class RegisterController extends Controller
     }
 
     public function edit(User $user){
+        if(auth()->user()->cannot('update-user')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $title = "Edit User";
         $roles = \App\Role::pluck('name', 'id')->all();
         return  view('auth.edit', compact('title', 'user', 'roles'));
     }
 
     public function update(Request $request, User $user){
+        if(auth()->user()->cannot('update-user')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $validate = $this->validator($request->all(), false, $user->id);
         if($validate->passes()){
             $user->name = $request->input('name');
@@ -138,6 +154,10 @@ class RegisterController extends Controller
     }
 
     public function delete(User $user){
+        if(auth()->user()->cannot('delete-user')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $user->delete();
         flash('Successfully deleted user')->success();
         return redirect()->back();

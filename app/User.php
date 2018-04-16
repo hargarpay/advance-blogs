@@ -69,25 +69,20 @@ class User extends Authenticatable implements JWTSubject
 
     public function hasAccess($permissions)
     {
-        foreach ($permissions as $permission) {
-            if($this->hasPerssions($permission)){
+        foreach ($this->roles as $role) {
+            if($role->hasAccess($permissions)){
                 return true;
             }
         }
         return false;
     }
 
-    public function hasPerssions($permission){
-        return $this->roles()->hasAccess($permission);
-    }
+    
 
     public function inRole($roles){
-        foreach ($roles as $role) {
-            if($this->roles()->slug === $role){
-                return true;
-            }
+        foreach ($this->roles as $role) {
+            return in_array($role->slug, $roles);
         }
-        return false;
     }
 
     public function getCreatedAtFormatAttribute($value){

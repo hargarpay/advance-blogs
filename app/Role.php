@@ -23,11 +23,19 @@ class Role extends Model
  		return $this->belongsToMany('App\User', 'users_roles', 'role_id', 'user_id');
  	}
 
- 	public function hasAccess($permission){
- 		$permissions = json_decode($this->permissions, true);
-
- 		return $permissions[$permission] === true ?  true : false;
+ 	public function hasAccess($permissions){
+ 		 foreach ($permissions as $permission) {
+            if($this->hasPermission($permission)){
+                return true;
+            }
+        }
+        return false;
  	}
+
+ 	public function hasPermission($permission){
+       $permissions =  json_decode($this->permissions, true);
+       return array_key_exists($permission, $permissions);
+    }
 
  	public function getCreatedAtFormatAttribute($value){
     	return \Carbon\Carbon::parse($this->created_at)->format('jS F, Y');

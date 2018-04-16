@@ -11,7 +11,7 @@ use Validator;
 class PostController extends Controller
 {
     public function __construct(){
-    	
+    	$this->middleware('auth');
     }
 
     public function view(){
@@ -28,11 +28,19 @@ class PostController extends Controller
     }
 
     public function create(){
+        if(auth()->user()->cannot('create-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$title = "Create Post";
     	return view('posts.create', compact('title'));
     }
 
     public function store(Request $request){
+        if(auth()->user()->cannot('create-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$validate = Validator::make($request->all(), ['title' => 'required|min:5', 'description' => 'required|min:20']);
     	if($validate->passes()){
     		Post::create([
@@ -51,12 +59,20 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
+        if(auth()->user()->cannot('update-post', $post)){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$title = "Edit ".strtoupper($post->title);
     	return view('posts.edit', compact('title', 'post'));
     }
 
 
     public function update(Request $request, Post $post){
+         if(auth()->user()->cannot('update-post', $post)){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$validate = Validator::make($request->all(), ['title' => 'required|min:5', 'description' => 'required|min:20']);
 
     	if($validate->passes()){
@@ -74,12 +90,20 @@ class PostController extends Controller
     }
 
     public function trash(Post $post){
+        if(auth()->user()->cannot('delete-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$post->delete();
     	flash('Successfully, trashed post')->success();
     	return redirect()->back();
     }
 
     public function untrash(Post $post){
+        if(auth()->user()->cannot('delete-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
     	$post->restore();
     	flash('Successfully, restore post')->success();
     	return redirect()->back();
@@ -92,6 +116,10 @@ class PostController extends Controller
     }
 
     public function publish(Post $post){
+        if(auth()->user()->cannot('draft-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $post->published = 1;
         $post->save();
         flash('Successfully, published post')->success();
@@ -99,6 +127,10 @@ class PostController extends Controller
     }
 
     public function draft(Post $post){
+        if(auth()->user()->cannot('draft-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
         $post->published = 0;
         $post->save();
         flash('Successfully, drafted post')->success();

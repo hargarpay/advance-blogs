@@ -1,5 +1,8 @@
 {
-  "private": true,
+  "name": "vue",
+  "version": "1.0.0",
+  "description": "Websocket Application",
+  "author": "Ifeoluwa Odewale",
   "scripts": {
     "dev": "npm run development",
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -17,12 +20,9 @@
     "laravel-mix": "^1.0",
     "lodash": "^4.17.4",
     "vue": "^2.1.10"
-<<<<<<< HEAD
   },
   "dependencies": {
     "laravel-echo": "^1.3.5",
     "pusher-js": "^4.2.2"
-=======
->>>>>>> 45211b90cc4ff5bdbe9a6d94e3008126de915679
   }
 }

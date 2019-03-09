@@ -43,7 +43,7 @@
             </div> -->
               <div class="media-body">
                   <h4>@{{comment.user.name}}</h4>
-                  <span>@{{comment.created_at_format}}</span>
+                  <span>@{{comment.created_at}}</span>
                   <p class="no-margin">@{{comment.comment}}</p>
               </div>
             </div>
@@ -77,6 +77,7 @@
             axios.get(`/post/${this.post.id}/comments`)
                   .then(response => {
                     this.comments = response.data;
+                    console.log(this.comments);
                     this.numberOfComent = this.comments.length === 1 ? '1 Comment' : this.comments.length+' Comments';
                   }).catch(error => {
                       console.log(error);

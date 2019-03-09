@@ -23,8 +23,8 @@ class PostController extends Controller
     public function viewTrash(){
     	$title = "View Posts";
     	$posts = Post::onlyTrashed()
-    				->get();
-    	return view('posts.view', compact('title', 'posts'));
+    				->paginate(10);
+    	return view('posts.trash-view', compact('title', 'posts'));
     }
 
     public function create(){
@@ -99,23 +99,30 @@ class PostController extends Controller
     	return redirect()->back();
     }
 
-    public function untrash(Post $post){
+    public function restore($post){
         if(auth()->user()->cannot('delete-post')){
             $title = 'Permission Deny';
             return view('errors.401', compact('title'));
         }
+        $post = Post::onlyTrashed()->find($post);
     	$post->restore();
     	flash('Successfully, restore post')->success();
     	return redirect()->back();
     }
 
-    public function permanentDelete(Post $post){
+    public function permanentDelete($post){
+        if(auth()->user()->cannot('delete-post')){
+            $title = 'Permission Deny';
+            return view('errors.401', compact('title'));
+        }
+        $post = Post::onlyTrashed()->find($post);
     	$post->forceDelete();
-    	flash('Successfully, restore post')->success();
+    	flash('Successfully, deleted post permanently')->success();
     	return redirect()->back();
     }
 
     public function publish(Post $post){
+
         if(auth()->user()->cannot('draft-post')){
             $title = 'Permission Deny';
             return view('errors.401', compact('title'));

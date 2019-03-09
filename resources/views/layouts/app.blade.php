@@ -26,13 +26,13 @@
 
         <!-- Sidebar Links -->
         <ul class="list-unstyled components">
-            <li class="active">
+            <li class="{{Request::is('admin/use*') ? 'active' : ''}}">
                 <a href="{{route('view.users')}}">
                     <i class="glyphicon glyphicon-user"></i>
                     Users
                 </a>
             </li>
-            <li>
+            <li class="{{Request::is('admin/pos*') ? 'active' : ''}}">
                 <a href="{{route('view.posts')}}">
                     <i class="glyphicon glyphicon-tasks"></i>
                     Posts

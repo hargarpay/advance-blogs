@@ -18,7 +18,8 @@ class Comment extends Model
     	return $this->belongsTo('App\User');
     }
 
-    public function getCreatedAtFormatAttribute($value){
-    	return \Carbon\Carbon::parse($this->created_at)->format('jS F, Y');
+    public function getCreatedAtAttribute($value){
+    	return \Carbon\Carbon::parse($value)->format('jS F, Y');
+    	// return \Carbon\Carbon::parse($this->created_at)->format('jS F, Y');
     }
 }

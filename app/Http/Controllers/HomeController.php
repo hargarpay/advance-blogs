@@ -25,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $title = 'Homepage';
-        $posts = Post::paginate(10);
+        $posts = Post::where('published', 1)
+                ->paginate(10);
         return view('home', compact('title', 'posts'));
     }
 

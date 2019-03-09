@@ -43,7 +43,9 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAccess(['create-post']);
         });
         Gate::define('draft-post', function($user){
-            return $user->inRole(['editor']);
+            return $user->hasAccess(['draft-post']);
+
+            // return $user->inRole(['editor']);
         });
         Gate::define('delete-post', function($user){
             return $user->hasAccess(['delete-post']);

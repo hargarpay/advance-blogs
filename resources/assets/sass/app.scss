@@ -99,7 +99,7 @@
 			}
 		}
 		li.active > a{
-			@extend a[aria-expanded="true"];
+			@extend .special;
 		}
 
 		ul a {
@@ -178,7 +178,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     font-size: 0.6em;
 }
 
-a[aria-expanded="true"]{
+a[aria-expanded="true"], .special{
 		color: #fff;
 	    background: #8eb4cb;
 		&::before {
@@ -253,50 +253,77 @@ tbody tr td{
 	}
 }
 
-table#user-table{
+// table#user-table{
+
+// 	td{
+// 		word-break : break-word;
+
+// 		&:nth-of-type(2):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 		&:nth-of-type(3):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 		&:nth-of-type(4):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 		&:nth-of-type(5):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 		&:nth-of-type(6):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 		&:nth-of-type(7):before { 
+// 			@include small{
+// 				content: attr(data-title);
+// 			}
+// 		}
+// 	}
+// }
+
+table{
 
 	td{
 		word-break : break-word;
 
 		&:nth-of-type(2):before { 
 			@include small{
-				content: "Fullname";
+				content: attr(data-title);
 			}
 		}
 		&:nth-of-type(3):before { 
 			@include small{
-				content: "Email";
+				content: attr(data-title);
 			}
 		}
 		&:nth-of-type(4):before { 
 			@include small{
-				content: "Role";
+				content: attr(data-title);
 			}
 		}
-	}
-
-	
-	
-}
-
-table#post-table{
-
-	td{
-		word-break : break-word;
-
-		&:nth-of-type(2):before { 
+		&:nth-of-type(5):before { 
 			@include small{
-				content: "Title";
+				content: attr(data-title);
 			}
 		}
-		&:nth-of-type(3):before { 
+		&:nth-of-type(6):before { 
 			@include small{
-				content: "Description";
+				content: attr(data-title);
 			}
 		}
-		&:nth-of-type(4):before { 
+		&:nth-of-type(7):before { 
 			@include small{
-				content: "Date Created";
+				content: attr(data-title);
 			}
 		}
 	}
@@ -337,5 +364,13 @@ table#post-table{
 	}
 	.padding-bottom.non-border-bottom{
 		border-bottom: 0;
+	}
+}
+
+.dropdown{
+	.dropdown-menu{
+		li{
+			margin: 5px;
+		}
 	}
 }

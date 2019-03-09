@@ -17,7 +17,7 @@
                             <th>Fullname</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th colspan="2">Actions</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -25,14 +25,22 @@
                         @forelse($users as $user)
                             <tr>
                                 <td>{{++$counter}}</td>
-                                <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->roles()->first()->name}}</td>
-                                <td class="actions-button"><a href="{{route('update.user', ['user' => $user->id])}}" class="btn btn-info btn-block"><i class="glyphicon glyphicon-pencil"></i> Edit</a></td>
-                                <td class="actions-button">
- 
-                                <a href="#" data-href="{{route('delete.user', ['user' => $user->id])}}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash" ></i> Delete</a> 
-                                   
+                                <td data-title="Fullname">{{$user->name}}</td>
+                                <td data-title="Email">{{$user->email}}</td>
+                                <td data-title="Role">{{$user->roles()->first()->name}}</td>
+                                <td class="actions-button dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        More <span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu pull-right" role="menu">
+                                        <li>
+                                            <a href="{{route('update.user', ['user' => $user->id])}}" class="btn btn-info btn-block"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" data-href="{{route('delete.user', ['user' => $user->id])}}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash" ></i> Delete</a> 
+                                        </li>
+                                    </ul>
                                 </td>
                             </tr>
                         @empty

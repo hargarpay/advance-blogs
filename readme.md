@@ -10,13 +10,13 @@
 ## Populate the .env variables
 - Make a copy .env.example and name it .env
 - Fill the following field in the .env file
-- - DB_DATABASE
-- - DB_USERNAME
-- - DB_PASSWORD
-- - PUSHER_APP_CLUSTER
-- - PUSHER_APP_ID
-- - PUSHER_APP_KEY
-- - PUSHER_APP_SECRET
+    - DB_DATABASE
+    - DB_USERNAME
+    - DB_PASSWORD
+    - PUSHER_APP_CLUSTER
+    - PUSHER_APP_ID
+    - PUSHER_APP_KEY
+    - PUSHER_APP_SECRET
 
 ## Command run in terminal to set up the project
 - change to the project folder and run the following in a command prompt for window or terminal for mac or linux

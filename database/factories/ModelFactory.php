@@ -20,5 +20,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+	    'api_token' => bin2hex(openssl_random_pseudo_bytes(30))
+    ];
+});
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => function () {
+            return factory(App\User::class)->create()->id;
+        },
+        'title' => $faker->words(5, true),
+        'description' => $faker->text(250),
+        'published' => 0,
+        'deleted_at' => null
     ];
 });

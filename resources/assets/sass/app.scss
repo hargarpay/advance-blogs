@@ -326,6 +326,21 @@ table{
 				content: attr(data-title);
 			}
 		}
+		&:nth-of-type(8):before { 
+			@include small{
+				content: attr(data-title);
+			}
+		}
+		&:nth-of-type(9):before { 
+			@include small{
+				content: attr(data-title);
+			}
+		}
+		&:nth-of-type(10):before { 
+			@include small{
+				content: attr(data-title);
+			}
+		}
 	}
 
 	
